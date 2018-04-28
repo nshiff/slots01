@@ -1,8 +1,6 @@
 CFLAGS= -g -Wall -pedantic -std=c11
 SOURCE_FILES=main.c slots.h
 
-slots: $(SOURCE_FILES)
+run: $(SOURCE_FILES)
 	gcc -o slots $(SOURCE_FILES) $(CFLAGS)
-
-run: slots
 	./slots
