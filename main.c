@@ -10,7 +10,12 @@ https://www.tutorialspoint.com/c_standard_library/c_function_rand.htm
 void init(void){
     time_t t;
 	srand((unsigned) time(&t));
-	test_nothing();
+
+	runTestSuite();
+}
+
+int getWheelValue(){
+    return -1;
 }
 
 int main(){
@@ -25,4 +30,17 @@ int main(){
     printf("%d %d %d\n", WHEELS[0], WHEELS[1], WHEELS[2]);
 
     return(0);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+void test_spinWheel(void){
+    int wheelValue = getWheelValue();
+    assert(-1 == wheelValue);
+}
+
+void runTestSuite(void){
+    printf("running unit test suite...");
+    test_spinWheel();
+    printf(" done\n");
 }
