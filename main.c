@@ -31,7 +31,7 @@ int main(){
 
 void test_getPseudorandomIntegerForWheel(void){
     srand(1234);
-    
+
     assert(2 == getPseudorandomIntegerForWheel());
     assert(3 == getPseudorandomIntegerForWheel());
     assert(3 == getPseudorandomIntegerForWheel());
