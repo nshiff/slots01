@@ -1,5 +1,5 @@
 # slots01
 
     make
-    ./a.out
+    ./slots
     
