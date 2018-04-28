@@ -5,16 +5,7 @@ https://stackoverflow.com/questions/9655202/how-to-convert-integer-to-string-in-
 https://www.tutorialspoint.com/c_standard_library/c_function_rand.htm
 */
 
-#include <assert.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-
-void test_nothing(void){
-    assert(false && "My first unit test");
-}
+#include "slots_all.h"
 
 void init(void){
     time_t t;
