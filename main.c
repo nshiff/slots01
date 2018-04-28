@@ -15,29 +15,29 @@ void init(void){
 	srand((unsigned) time(&t));
 }
 
-int getWheelValue(){
+int getPseudorandomIntegerForWheel(){
     return rand() % 4;
 }
 
 int main(){
 	init();
 
-    printf("%d %d %d\n", getWheelValue(), getWheelValue(), getWheelValue());
+    printf("%d %d %d\n", getPseudorandomIntegerForWheel(), getPseudorandomIntegerForWheel(), getPseudorandomIntegerForWheel());
 
     return(0);
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-void test_spinWheel(void){
-    assert(getWheelValue() == 2);
-    assert(getWheelValue() == 3);
-    assert(getWheelValue() == 3);
+void test_getPseudorandomIntegerForWheel(void){
+    assert(2 == getPseudorandomIntegerForWheel());
+    assert(3 == getPseudorandomIntegerForWheel());
+    assert(3 == getPseudorandomIntegerForWheel());
 }
 
 void runTestSuite(void){
     printf("running unit test suite...");
     srand(1234);
-    test_spinWheel();
+    test_getPseudorandomIntegerForWheel();
     printf(" done\n");
 }
