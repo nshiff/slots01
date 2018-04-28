@@ -1,11 +1,12 @@
 /* 
 References
+http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
 https://www.slideshare.net/amritayan/test-driven-development-in-c
 https://stackoverflow.com/questions/9655202/how-to-convert-integer-to-string-in-c
 https://www.tutorialspoint.com/c_standard_library/c_function_rand.htm
 */
 
-#include "slots_all.h"
+#include "slots.h"
 
 void init(void){
     time_t t;
