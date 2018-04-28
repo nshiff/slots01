@@ -9,26 +9,20 @@ https://www.tutorialspoint.com/c_standard_library/c_function_rand.htm
 #include "slots.h"
 
 void init(void){
+	runTestSuite();
+
     time_t t;
 	srand((unsigned) time(&t));
-
-	runTestSuite();
 }
 
 int getWheelValue(){
-    return -1;
+    return rand() % 4;
 }
 
 int main(){
 	init();
 
-    int NUM_WHEELS = 3;
-	int WHEELS[NUM_WHEELS];
-
-	for(int i = 0 ; i < NUM_WHEELS ; i++ ) {
-	    WHEELS[i] = rand() % 4;
-	}
-    printf("%d %d %d\n", WHEELS[0], WHEELS[1], WHEELS[2]);
+    printf("%d %d %d\n", getWheelValue(), getWheelValue(), getWheelValue());
 
     return(0);
 }
@@ -36,12 +30,14 @@ int main(){
 // ---------------------------------------------------------------------------------------------------------------------
 
 void test_spinWheel(void){
-    int wheelValue = getWheelValue();
-    assert(-1 == wheelValue);
+    assert(getWheelValue() == 2);
+    assert(getWheelValue() == 3);
+    assert(getWheelValue() == 3);
 }
 
 void runTestSuite(void){
     printf("running unit test suite...");
+    srand(1234);
     test_spinWheel();
     printf(" done\n");
 }
