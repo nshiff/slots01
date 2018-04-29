@@ -22,19 +22,31 @@ int getPseudorandomIntegerForWheel(){
 }
 
 char getWheelSymbolByInteger(int valueAsInt){
-    char miss = 'x';
-    char wheelSymbols[] = {miss, '7', 'a', 'b'};
     int numSymbols = 4;
+    char wheelSymbols[] = {
+        SYMBOL_MISS,
+        SYMBOL_JACKPOT,
+        SYMBOL_BELL,
+        SYMBOL_CHERRY
+    };
     if(valueAsInt > -1 && valueAsInt < numSymbols){
         return wheelSymbols[valueAsInt];
     }
-    return miss;
+    return SYMBOL_MISS;
+}
+
+char* evaluateDisplayedSymbols(char a, char b, char c){
+    return "";
 }
 
 int main(int argc, char *argv[]){
 	init();
 
-    printf("%d %d %d\n", getPseudorandomIntegerForWheel(), getPseudorandomIntegerForWheel(), getPseudorandomIntegerForWheel());
+	int a = getPseudorandomIntegerForWheel();
+	int b = getPseudorandomIntegerForWheel();
+	int c = getPseudorandomIntegerForWheel();
+
+    printf("%c %c %c\n", getWheelSymbolByInteger(a), getWheelSymbolByInteger(b), getWheelSymbolByInteger(c));
 
     return(0);
 }
@@ -56,20 +68,25 @@ void test_getPseudorandomIntegerForWheel(void){
 }
 
 void test_getWheelSymbolByInteger(void){
-    assert('x' == getWheelSymbolByInteger(0));
-    assert('7' == getWheelSymbolByInteger(1));
-    assert('a' == getWheelSymbolByInteger(2));
-    assert('b' == getWheelSymbolByInteger(3));
+    assert(SYMBOL_MISS == getWheelSymbolByInteger(0));
+    assert(SYMBOL_JACKPOT == getWheelSymbolByInteger(1));
+    assert(SYMBOL_BELL == getWheelSymbolByInteger(2));
+    assert(SYMBOL_CHERRY == getWheelSymbolByInteger(3));
 }
 
 void test_getWheelSymbolByInteger_InvalidInput(void){
-    char expectedInvalidChar = 'x';
-    assert(expectedInvalidChar == getWheelSymbolByInteger(-1));
-    assert(expectedInvalidChar == getWheelSymbolByInteger(4));
-    assert(expectedInvalidChar == getWheelSymbolByInteger(5));
-    assert(expectedInvalidChar == getWheelSymbolByInteger(9999));
-    assert(expectedInvalidChar == getWheelSymbolByInteger(INT_MAX));
-    assert(expectedInvalidChar == getWheelSymbolByInteger(INT_MIN));
+    assert(SYMBOL_MISS == getWheelSymbolByInteger(-1));
+    assert(SYMBOL_MISS == getWheelSymbolByInteger(4));
+    assert(SYMBOL_MISS == getWheelSymbolByInteger(5));
+    assert(SYMBOL_MISS == getWheelSymbolByInteger(9999));
+    assert(SYMBOL_MISS == getWheelSymbolByInteger(INT_MAX));
+    assert(SYMBOL_MISS == getWheelSymbolByInteger(INT_MIN));
+
+}
+
+void test_evaluateDisplayedSymbols(void){
+    char *actualMessage_Jackpot = evaluateDisplayedSymbols(SYMBOL_JACKPOT, SYMBOL_JACKPOT, SYMBOL_JACKPOT);
+    assert(0 == strcmp("", actualMessage_Jackpot));
 
 }
 
@@ -78,5 +95,6 @@ void runTestSuite(void){
     test_getPseudorandomIntegerForWheel();
     test_getWheelSymbolByInteger();
     test_getWheelSymbolByInteger_InvalidInput();
+    test_evaluateDisplayedSymbols();
     printf(" done\n");
 }
