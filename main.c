@@ -22,9 +22,13 @@ int getPseudorandomIntegerForWheel(){
 }
 
 char getWheelSymbolByInteger(int valueAsInt){
-
-    char wheelSymbols[] = {'x', '7', 'a', 'b'};
-    return wheelSymbols[valueAsInt];
+    char miss = 'x';
+    char wheelSymbols[] = {miss, '7', 'a', 'b'};
+    int numSymbols = 4;
+    if(valueAsInt > -1 && valueAsInt < numSymbols){
+        return wheelSymbols[valueAsInt];
+    }
+    return miss;
 }
 
 int main(int argc, char *argv[]){
@@ -58,9 +62,21 @@ void test_getWheelSymbolByInteger(void){
     assert('b' == getWheelSymbolByInteger(3));
 }
 
+void test_getWheelSymbolByInteger_InvalidInput(void){
+    char expectedInvalidChar = 'x';
+    assert(expectedInvalidChar == getWheelSymbolByInteger(-1));
+    assert(expectedInvalidChar == getWheelSymbolByInteger(4));
+    assert(expectedInvalidChar == getWheelSymbolByInteger(5));
+    assert(expectedInvalidChar == getWheelSymbolByInteger(9999));
+    assert(expectedInvalidChar == getWheelSymbolByInteger(INT_MAX));
+    assert(expectedInvalidChar == getWheelSymbolByInteger(INT_MIN));
+
+}
+
 void runTestSuite(void){
     printf("running unit test suite...");
     test_getPseudorandomIntegerForWheel();
     test_getWheelSymbolByInteger();
+    test_getWheelSymbolByInteger_InvalidInput();
     printf(" done\n");
 }
